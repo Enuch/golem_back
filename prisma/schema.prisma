@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int       @id @default(autoincrement())
+  username   String    @db.VarChar(20)
+  password   String    @db.VarChar(50)
+  email      String?   @unique
+  role       Int
+  office     String?   @db.VarChar(50)
+  sector     String?   @db.VarChar(50)
+  active     Boolean
+  name       String?   @db.VarChar(50)
+  requests   Request[]
+  created_at DateTime  @default(now())
+  update_at  DateTime  @updatedAt
+}
+
+model Category {
+  id         Int        @id @default(autoincrement())
+  name       String     @db.VarChar(30)
+  active     Boolean
+  materials  Material[]
+  created_at DateTime   @default(now())
+  update_at  DateTime   @updatedAt
+}
+
+model Material {
+  id               Int                @id @default(autoincrement())
+  name             String             @db.VarChar(30)
+  origin           String             @db.VarChar(30)
+  active           Boolean
+  amount           Int
+  category_id      Int
+  category         Category           @relation(fields: [category_id], references: [id])
+  // material_entrace Material_Entrance[]
+  material_request Material_Request[]
+  created_at       DateTime           @default(now())
+  update_at        DateTime           @updatedAt
+}
+
+model Request {
+  id                Int                @id @default(autoincrement())
+  active            Boolean
+  amount            Int
+  requested_user_id Int
+  requested_user    User               @relation(fields: [requested_user_id], references: [id])
+  material_request  Material_Request[]
+  // material_entrance Material_Entrance[]
+  status            Int?
+  created_date      DateTime           @default(now())
+  update_at         DateTime           @updatedAt
+}
+
+model Material_Request {
+  id              Int      @id @default(autoincrement())
+  amount_received Int
+  material_id     Int
+  material        Material @relation(fields: [material_id], references: [id])
+  request_id      Int      @unique
+  request         Request  @relation(fields: [request_id], references: [id])
+  created_at      DateTime @default(now())
+  update_at       DateTime @updatedAt
+}
+
+// model Material_Request {
+//   id          Int      @id @default(autoincrement())
+//   request_id  Int
+//   request     Request  @relation(fields: [request_id], references: [id])
+//   material_id Int
+//   material    Material @relation(fields: [material_id], references: [id])
+//   created_at  DateTime @default(now())
+//   update_at   DateTime @updatedAt
+// }
