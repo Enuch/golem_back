@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 export class UserDTO {
-  username: number;
+  username: string;
   password: string;
   email: string;
   role: number;
