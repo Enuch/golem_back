@@ -17,7 +17,7 @@ export class MaterialRequestService {
   async findOne(id: number): Promise<MaterialRequestDTO | null> {
     return this.prisma.material_Request.findUnique({
       where: {
-        id: id,
+        request_id: id,
       },
     });
   }
