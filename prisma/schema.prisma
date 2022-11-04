@@ -15,7 +15,7 @@ model User {
   role       Int
   office     String?   @db.VarChar(50)
   sector     String?   @db.VarChar(50)
-  active     Boolean
+  active     Boolean   @default(true)
   name       String?   @db.VarChar(50)
   requests   Request[]
   created_at DateTime  @default(now())
@@ -25,7 +25,7 @@ model User {
 model Category {
   id         Int        @id @default(autoincrement())
   name       String     @db.VarChar(30)
-  active     Boolean
+  active     Boolean    @default(true)
   materials  Material[]
   created_at DateTime   @default(now())
   update_at  DateTime   @updatedAt
@@ -35,7 +35,7 @@ model Material {
   id               Int                @id @default(autoincrement())
   name             String             @db.VarChar(30)
   origin           String             @db.VarChar(30)
-  active           Boolean
+  active           Boolean            @default(true)
   amount           Int
   category_id      Int
   category         Category           @relation(fields: [category_id], references: [id])
@@ -47,7 +47,7 @@ model Material {
 
 model Request {
   id                Int                @id @default(autoincrement())
-  active            Boolean
+  active            Boolean            @default(true)
   amount            Int
   requested_user_id Int
   requested_user    User               @relation(fields: [requested_user_id], references: [id])

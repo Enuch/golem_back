@@ -11,6 +11,9 @@ export class MaterialService {
       orderBy: {
         name: 'asc',
       },
+      include: {
+        category: true,
+      },
     });
   }
 
