@@ -7,8 +7,7 @@ async function bootstrap() {
   app.enableCors({
     credentials: true,
     maxAge: 3600,
-    origin:
-      process.env.CORS_ORIGIN || 'https://golem-tads-front.herokuapp.com/',
+    origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204,
