@@ -11,6 +11,10 @@ export class RequestService {
       orderBy: {
         created_date: 'desc',
       },
+      include: {
+        requested_user: true,
+        material_request: true,
+      },
     });
   }
 
@@ -18,6 +22,10 @@ export class RequestService {
     return this.prisma.request.findUnique({
       where: {
         id: id,
+      },
+      include: {
+        requested_user: true,
+        material_request: true,
       },
     });
   }

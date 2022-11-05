@@ -48,7 +48,6 @@ model Material {
 model Request {
   id                Int                @id @default(autoincrement())
   active            Boolean            @default(true)
-  amount            Int
   requested_user_id Int
   requested_user    User               @relation(fields: [requested_user_id], references: [id])
   material_request  Material_Request[]
@@ -59,14 +58,15 @@ model Request {
 }
 
 model Material_Request {
-  id              Int      @id @default(autoincrement())
-  amount_received Int
-  material_id     Int
-  material        Material @relation(fields: [material_id], references: [id])
-  request_id      Int      @unique
-  request         Request  @relation(fields: [request_id], references: [id])
-  created_at      DateTime @default(now())
-  update_at       DateTime @updatedAt
+  id               Int      @id @default(autoincrement())
+  amount_requested Int
+  amount_received  Int
+  material_id      Int
+  material         Material @relation(fields: [material_id], references: [id])
+  request_id       Int      @unique
+  request          Request  @relation(fields: [request_id], references: [id])
+  created_at       DateTime @default(now())
+  update_at        DateTime @updatedAt
 }
 
 // model Material_Request {
