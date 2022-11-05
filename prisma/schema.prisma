@@ -63,7 +63,7 @@ model Material_Request {
   amount_received  Int
   material_id      Int
   material         Material @relation(fields: [material_id], references: [id])
-  request_id       Int      @unique
+  request_id       Int
   request          Request  @relation(fields: [request_id], references: [id])
   created_at       DateTime @default(now())
   update_at        DateTime @updatedAt
