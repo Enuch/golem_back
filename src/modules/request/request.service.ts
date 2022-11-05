@@ -13,7 +13,11 @@ export class RequestService {
       },
       include: {
         requested_user: true,
-        material_request: true,
+        material_request: {
+          include: {
+            material: true,
+          },
+        },
       },
     });
   }
@@ -25,7 +29,11 @@ export class RequestService {
       },
       include: {
         requested_user: true,
-        material_request: true,
+        material_request: {
+          include: {
+            material: true,
+          },
+        },
       },
     });
   }
