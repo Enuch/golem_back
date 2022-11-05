@@ -11,6 +11,9 @@ export class MaterialRequestService {
       orderBy: {
         created_at: 'desc',
       },
+      include: {
+        material: true,
+      },
     });
   }
 
@@ -18,6 +21,9 @@ export class MaterialRequestService {
     return this.prisma.material_Request.findFirst({
       where: {
         request_id: id,
+      },
+      include: {
+        material: true,
       },
     });
   }
