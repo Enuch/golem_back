@@ -7,7 +7,7 @@ async function bootstrap() {
   app.enableCors({
     credentials: true,
     maxAge: 3600,
-    origin: '*',
+    origin: 'http://localhost:3000',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204,

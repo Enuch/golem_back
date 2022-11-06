@@ -21,6 +21,11 @@ export class MaterialRequestController {
     return this.materialRequestService.create(materialRequestDTO);
   }
 
+  @Post('/many')
+  createMany(@Body() materialRequestDTO: MaterialRequestDTO[]) {
+    return this.materialRequestService.createMany(materialRequestDTO);
+  }
+
   @Get()
   findAll() {
     return this.materialRequestService.findAll();

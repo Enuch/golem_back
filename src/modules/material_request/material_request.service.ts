@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/database/prisma.service';
 import { MaterialRequestDTO } from './material_request.dto';
 
@@ -34,6 +35,16 @@ export class MaterialRequestService {
     return this.prisma.material_Request.create({
       data: materialRequestDTO,
     });
+  }
+
+  async createMany(
+    materialRequestDTO: MaterialRequestDTO[],
+  ): Promise<Prisma.BatchPayload> {
+    const data = this.prisma.material_Request.createMany({
+      data: materialRequestDTO,
+    });
+
+    return data;
   }
 
   async update(

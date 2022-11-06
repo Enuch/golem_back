@@ -52,7 +52,7 @@ model Request {
   requested_user    User               @relation(fields: [requested_user_id], references: [id])
   material_request  Material_Request[]
   // material_entrance Material_Entrance[]
-  status            Int?
+  status            Int?               @default(1)
   created_date      DateTime           @default(now())
   update_at         DateTime           @updatedAt
 }
