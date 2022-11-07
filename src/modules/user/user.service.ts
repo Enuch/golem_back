@@ -6,6 +6,14 @@ import { UserDTO } from './user.dto';
 export class UserService {
   constructor(private prisma: PrismaService) {}
 
+  async login(username: string): Promise<UserDTO | null> {
+    return this.prisma.user.findFirst({
+      where: {
+        username,
+      },
+    });
+  }
+
   async findAll(): Promise<UserDTO[]> {
     return this.prisma.user.findMany({
       orderBy: {
