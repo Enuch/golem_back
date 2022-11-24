@@ -27,7 +27,12 @@ export class MaterialService {
 
   async create(materialDTO: MaterialDTO): Promise<MaterialDTO> {
     return this.prisma.material.create({
-      data: materialDTO,
+      data: {
+        amount: materialDTO.amount,
+        name: materialDTO.name,
+        origin: materialDTO.origin,
+        category_id: materialDTO.category_id,
+      },
     });
   }
 

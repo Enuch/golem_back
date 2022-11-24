@@ -32,7 +32,15 @@ export class UserService {
 
   async create(userDTO: UserDTO): Promise<UserDTO> {
     return this.prisma.user.create({
-      data: userDTO,
+      data: {
+        username: userDTO.username,
+        password: userDTO.password,
+        email: userDTO.email,
+        role: userDTO.role,
+        name: userDTO.name,
+        office: userDTO.office,
+        sector: userDTO.sector,
+      },
     });
   }
 
