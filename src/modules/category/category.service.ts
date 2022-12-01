@@ -11,6 +11,9 @@ export class CategoryService {
       orderBy: {
         name: 'asc',
       },
+      where: {
+        active: true,
+      },
     });
   }
 
@@ -40,9 +43,12 @@ export class CategoryService {
   }
 
   async remove(id: number): Promise<CategoryDTO> {
-    return this.prisma.category.delete({
+    return this.prisma.category.update({
       where: {
         id: id,
+      },
+      data: {
+        active: false,
       },
     });
   }

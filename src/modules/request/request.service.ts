@@ -11,6 +11,9 @@ export class RequestService {
       orderBy: {
         created_date: 'desc',
       },
+      where: {
+        active: true,
+      },
       include: {
         requested_user: true,
         material_request: {
@@ -54,9 +57,12 @@ export class RequestService {
   }
 
   async remove(id: number): Promise<RequestDTO> {
-    return this.prisma.request.delete({
+    return this.prisma.request.update({
       where: {
         id: id,
+      },
+      data: {
+        active: false,
       },
     });
   }

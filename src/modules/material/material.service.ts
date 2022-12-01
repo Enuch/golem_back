@@ -11,6 +11,9 @@ export class MaterialService {
       orderBy: {
         name: 'asc',
       },
+      where: {
+        active: true,
+      },
       include: {
         category: true,
       },
@@ -46,9 +49,12 @@ export class MaterialService {
   }
 
   async remove(id: number): Promise<MaterialDTO> {
-    return this.prisma.material.delete({
+    return this.prisma.material.update({
       where: {
         id: id,
+      },
+      data: {
+        active: false,
       },
     });
   }

@@ -19,6 +19,9 @@ export class UserService {
       orderBy: {
         name: 'asc',
       },
+      where: {
+        active: true,
+      },
     });
   }
 
@@ -54,9 +57,12 @@ export class UserService {
   }
 
   async remove(id: number): Promise<UserDTO> {
-    return this.prisma.user.delete({
+    return this.prisma.user.update({
       where: {
         id: id,
+      },
+      data: {
+        active: false,
       },
     });
   }
