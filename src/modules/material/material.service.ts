@@ -20,6 +20,20 @@ export class MaterialService {
     });
   }
 
+  async findAllByMinorAmount(): Promise<MaterialDTO[]> {
+    return this.prisma.material.findMany({
+      orderBy: {
+        amount: 'asc',
+      },
+      where: {
+        active: true,
+      },
+      include: {
+        category: true,
+      },
+    });
+  }
+
   async findOne(id: number): Promise<MaterialDTO | null> {
     return this.prisma.material.findUnique({
       where: {

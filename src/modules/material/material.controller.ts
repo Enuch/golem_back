@@ -24,6 +24,11 @@ export class MaterialController {
     return this.materialService.findAll();
   }
 
+  @Get('/findOrderAscAmount')
+  findAllByMinorAmount() {
+    return this.materialService.findAllByMinorAmount();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.materialService.findOne(+id);
