@@ -39,7 +39,6 @@ model Material {
   amount           Int
   category_id      Int
   category         Category           @relation(fields: [category_id], references: [id])
-  // material_entrace Material_Entrance[]
   material_request Material_Request[]
   created_at       DateTime           @default(now())
   update_at        DateTime           @updatedAt
@@ -51,7 +50,6 @@ model Request {
   requested_user_id Int
   requested_user    User               @relation(fields: [requested_user_id], references: [id])
   material_request  Material_Request[]
-  // material_entrance Material_Entrance[]
   status            Int?               @default(1)
   created_date      DateTime           @default(now())
   update_at         DateTime           @updatedAt
@@ -68,13 +66,3 @@ model Material_Request {
   created_at       DateTime @default(now())
   update_at        DateTime @updatedAt
 }
-
-// model Material_Request {
-//   id          Int      @id @default(autoincrement())
-//   request_id  Int
-//   request     Request  @relation(fields: [request_id], references: [id])
-//   material_id Int
-//   material    Material @relation(fields: [material_id], references: [id])
-//   created_at  DateTime @default(now())
-//   update_at   DateTime @updatedAt
-// }

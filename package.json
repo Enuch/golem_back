@@ -4,7 +4,7 @@
   "description": "",
   "author": "",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "heroku-postbuild": "NODE_ENV=dev npm install --omit --no-shrinkwrap && npm run build",
     "prebuild": "rimraf dist",
